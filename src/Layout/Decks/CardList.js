@@ -6,18 +6,21 @@ function CardList({ deck }) {
     const [front, setFront] = useState(true);
     const [count, setCount] = useState(0);
     const {id, name, description, cards} = deck
-
-console.log(front)
+    const [cardDisplay, setCardDisplay] = useState("")
+// console.log(cards[0])
 
 
 // need change handler for flip button
 const flipHandler = () => {
    if(!front){
+    const frontValue = cards[count].front
        setFront(true)
+       setCardDisplay(frontValue)
    } else{
+    const backValue = cards[count].back
     setFront(false)
+    setCardDisplay(backValue)
    }
-    
 } 
 
 
@@ -43,16 +46,20 @@ const nextHandler = () => {
 
                     </h3>
                     <p className="card-text">
-                        {cards[count].front}
+                        {front ? cards[count].front : cards[count].back}
 
                     </p>
                     <button onClick={flipHandler} className="btn btn-secondary mr-3">
                         Flip
                     </button>
-                    
+                    {
+                    front ? null : (
                     <button onClick={nextHandler} className="btn btn-primary">
                         Next
                     </button>
+                    )}
+
+
                 </div>
             </div>
         </div>
