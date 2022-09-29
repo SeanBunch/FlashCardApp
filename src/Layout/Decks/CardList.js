@@ -6,27 +6,28 @@ function CardList({ deck }) {
     const [front, setFront] = useState(true);
     const [count, setCount] = useState(0);
     const {id, name, description, cards} = deck
-// console.log("CL line 4:", deck.cards.length);
-// console.log("CL line 4:", deck.cards);
 
-console.log(cards[0].front)
-console.log(cards)
+console.log(front)
 
 
 // need change handler for flip button
 const flipHandler = () => {
-    console.log(cards[count].front)
+   if(!front){
+       setFront(true)
+   } else{
+    setFront(false)
+   }
     
 } 
 
 
 // need change handler for next button
 const nextHandler = () => {
-    // let count = 0;
-    // count += 1;
-    setCount((count) => count + 1)
-    console.log("hey", count);
-    // return count;
+    if(count < cards.length - 1) {
+        setCount((count) => count + 1)
+        // console.log("nextHandler:", count, cards.length - 1);
+
+    }
 }
 
 
