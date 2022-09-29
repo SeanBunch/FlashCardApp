@@ -6,38 +6,40 @@ import CardList from "./Decks/CardList";
 function Study() {
     const [ deck, setDeck ] = useState({cards:[0]});
     const { deckId } = useParams();
-    // console.log("line 8", deck.cards);
-    // console.log("line 8");
-    
+
+
     useEffect(() => {
       async function loadCards() {
         const response = await readDeck(deckId);
-        // const apiData = await response.json();
         setDeck(response);
-        //   console.log("line 15", response);
       }
       
       loadCards();
     }, [deckId])
     
-    // console.log("line 8", deck.cards);
 
   return (
     <div>
-      <nav>
-        <ol>
-          <li>
+      <nav aria-label="breadcrumb">
+        <ol className="breadcrumb">
+          <li className="breadcrumb-item">
             <Link to="/">Home</Link>
           </li>
 
-          <li>
+          <li className="breadcrumb-item">
             <Link to="/">Deck Name</Link>
           </li>
+
+          <li className="breadcrumb-item active" aria-current="page">
+            Study
+          </li>
+
+
         </ol>
       </nav>
 
       <div>
-        <h1>ima study component</h1>
+        <h1>Study: {deck.name}</h1>
       </div>
       
       <CardList deck={deck}/>
