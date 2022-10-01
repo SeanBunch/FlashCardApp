@@ -21,116 +21,103 @@ function Deck() {
 
   const deleteHandler = async () => {
     if (
-      window.confirm(
-        "Delete this deck? You will not be able to recover it."
-      )
+      window.confirm("Delete this deck? You will not be able to recover it.")
     ) {
       await deleteDeck(id);
       history.push("/");
-    } 
-    else {
+    } else {
       history.go(0);
     }
   };
 
   if (!deck || !cards) {
     return (
-      <div  role="status">
+      <div role="status">
         <p>Loading...</p>
       </div>
     );
   } else {
     return (
-      <div>
-        <nav>
-          <ol>
-            <li>
+      <div className="col-9 mx-auto">
+        <nav aria-label="breadcrumb">
+          <ol className="breadcrumb">
+
+            <li className="breadcrumb-item">
               <Link to={"/"}>Home</Link>
             </li>
 
-            <li>{name}</li>
+            <li className="breadcrumb-item">
+              {name}
+            </li>
+
           </ol>
         </nav>
 
-        <div className="card">
+        <div className="card border-0 mb-4">
           <div className="card-body">
-            
             <div>
-              <h5 className="card-title">{name}</h5>
+              <h2 className="card-title">{name}</h2>
             </div>
 
             <p>{description}</p>
 
             <div>
-              
-              <Link to={`/decks/${id}/edit`}>
+              <Link className="btn btn-secondary ml-3" to={`/decks/${id}/edit`}>
                 Edit
               </Link>
 
-              
-              <Link to={`/decks/${id}/study`} >
+              <Link className="btn btn-primary ml-3" to={`/decks/${id}/study`}>
                 Study
               </Link>
 
-              
-              <Link to={`/decks/${id}/cards/new`}>
+              <Link className="btn btn-primary ml-3" to={`/decks/${id}/cards/new`}>
                 Add Cards
               </Link>
 
-              
-              <button
-                onClick={deleteHandler}
-                name="delete"
-                value={id}
-              >
+              <button className="btn btn-danger ml-auto" onClick={deleteHandler} name="delete" value={id}>
                 Delete
               </button>
             </div>
           </div>
         </div>
 
-        <div>
+        <div className="row pl-3 pb-2">
           <h1>Cards</h1>
         </div>
 
-        {cards.map((card, index) => (
-          <div className="row" key={index}>
-            <div className="col">
-              <div className="card">
-                <div className="row card-body">
-                  
-                  <p>{card.front}</p>
+        {cards.map((card, id) => (
+          <div className="card" key={id}>
+            <div className="card-body">
+              <p>{card.front}</p>
+             
 
-                  
-                  <p>{card.back}</p>
-                </div>
+              <p>{card.back}</p>
+            </div>
 
-                <div>
-                  
-                  <Link to={`${url}/cards/${card.id}/edit`}>
-                    Edit
-                  </Link>
+            <div className="d-flex justify-content-end p-4">
+              <Link className="btn btn-secondary mr-3" to={`${url}/cards/${card.id}/edit`}>
+                Edit
+              </Link>
 
-                  <button
-                    onClick={async () => {
-                      if (
-                        window.confirm(
-                          "Delete this deck? You will not be able to recover it."
-                        )
-                      ) {
-                        await deleteCard(card.id);
-                        history.go(0);
-                      } else {
-                        history.go(0);
-                      }
-                    }}
-                    name="deleteCard"
-                    value={card.id}
-                  >
-                    Delete
-                  </button>
-                </div>
-              </div>
+              <button
+                onClick={async () => {
+                  if (
+                    window.confirm(
+                      "Delete this card? You will not be able to recover it."
+                    )
+                  ) {
+                    await deleteCard(card.id);
+                    history.go(0);
+                  } else {
+                    history.go(0);
+                  }
+                }}
+                name="deleteCard"
+                value={card.id}
+                className="btn btn-danger ml-3"
+              >
+                Delete
+              </button>
             </div>
           </div>
         ))}

@@ -4,7 +4,7 @@ import { readDeck } from "../utils/api";
 import CardList from "./Decks/CardList";
 
 function Study() {
-    const [ deck, setDeck ] = useState({cards:[0]});
+    const [ deck, setDeck ] = useState({cards:[]});
     const { deckId } = useParams();
 
 
@@ -27,14 +27,12 @@ function Study() {
           </li>
 
           <li className="breadcrumb-item">
-            <Link to="/">Deck Name</Link>
+            <Link to={`/decks/${deckId}`}>Deck Name</Link>
           </li>
 
           <li className="breadcrumb-item active" aria-current="page">
             Study
           </li>
-
-
         </ol>
       </nav>
 

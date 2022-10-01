@@ -3,34 +3,28 @@ import { Link, useParams, useHistory } from "react-router-dom";
 
 function CardList({ deck }) {
   const [front, setFront] = useState(true);
-  const [count, setCount] = useState(0);
+  const [index, setIndex] = useState(0);
   const { id, name, description, cards } = deck;
-  const [cardDisplay, setCardDisplay] = useState("");
   const { deckId } = useParams();
   const history = useHistory();
-  console.log(count, cards.length - 1)
 
   // need change handler for flip button
   const flipHandler = () => {
     if (!front) {
-      const frontValue = cards[count].front;
       setFront(true);
-      setCardDisplay(frontValue);
     } else {
-      const backValue = cards[count].back;
       setFront(false);
-      setCardDisplay(backValue);
     }
   };
 
   // need change handler for next button
   const nextHandler = () => {
-    if (count === cards.length - 1) {
-        window.confirm("Restart cards? Click 'Cancel' to return to the home page.") ? setCount(0) : history.push("/");
+    if (index === cards.length - 1) {
+        window.confirm("Restart cards? Click 'Cancel' to return to the home page.") ? setIndex(0) : history.push("/");
 
 
     } else {
-        setCount((count) => count + 1);
+        setIndex((index) => index + 1);
         setFront(true);
     }
   };
@@ -42,9 +36,9 @@ function CardList({ deck }) {
       <div>
         <div className="card">
           <div className="card-body">
-            <h3 className="card-title">Card {count + 1} of {cards.length}</h3>
+            <h3 className="card-title">Card {index + 1} of {cards.length}</h3>
             <p className="card-text">
-              {front ? cards[count].front : cards[count].back}
+              {front ? cards[index].front : cards[index].back}
             </p>
             <button onClick={flipHandler} className="btn btn-secondary mr-3">
               Flip
