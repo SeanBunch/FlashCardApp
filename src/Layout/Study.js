@@ -1,22 +1,20 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { readDeck } from "../utils/api";
 import CardList from "./Decks/CardList";
 
 function Study() {
-    const [ deck, setDeck ] = useState({cards:[]});
-    const { deckId } = useParams();
+  const [deck, setDeck] = useState({ cards: [] });
+  const { deckId } = useParams();
 
+  useEffect(() => {
+    async function loadCards() {
+      const response = await readDeck(deckId);
+      setDeck(response);
+    }
 
-    useEffect(() => {
-      async function loadCards() {
-        const response = await readDeck(deckId);
-        setDeck(response);
-      }
-      
-      loadCards();
-    }, [deckId])
-    
+    loadCards();
+  }, [deckId]);
 
   return (
     <div>
@@ -36,10 +34,9 @@ function Study() {
         </ol>
       </nav>
 
-        <h1>{deck.name}: Study</h1>
-      
-      <CardList deck={deck}/>
-      
+      <h1>{deck.name}: Study</h1>
+
+      <CardList deck={deck} />
     </div>
   );
 }

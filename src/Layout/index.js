@@ -11,7 +11,6 @@ import NotFound from "./NotFound";
 import EditDeck from "./Decks/EditDeck";
 import EditCard from "./Decks/EditCard";
 
-
 function Layout() {
   return (
     <div className="Layout">
@@ -45,8 +44,6 @@ function Layout() {
           <Route path="/decks/:deckId/cards/:cardId/edit">
             <EditCard />
           </Route>
-
-
 
           <Route>
             <NotFound />

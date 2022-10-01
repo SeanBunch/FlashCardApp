@@ -5,16 +5,15 @@ import { listDecks } from "../utils/api/index";
 import DeckList from "./Decks/DeckList";
 
 function Home() {
-    const [decks, setDecks] = useState([]);
+  const [decks, setDecks] = useState([]);
 
-    useEffect(() => {
-        async function getDeck() {
-            const getDeckAPI = await listDecks();
-            setDecks(getDeckAPI);
-        }
-        getDeck();
-    }, []);
-
+  useEffect(() => {
+    async function getDeck() {
+      const getDeckAPI = await listDecks();
+      setDecks(getDeckAPI);
+    }
+    getDeck();
+  }, []);
 
   return (
     <div>

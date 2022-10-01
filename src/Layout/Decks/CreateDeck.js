@@ -3,36 +3,32 @@ import { Link, useHistory } from "react-router-dom";
 import { createDeck } from "../../utils/api/index";
 
 function CreateDeck() {
-const history = useHistory();
-const [newDeck, setNewDeck] = useState({name: "", description: ""});
-// console.log(history)
+  const history = useHistory();
+  const [newDeck, setNewDeck] = useState({ name: "", description: "" });
+  // console.log(history)
 
-async function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     const response = await createDeck(newDeck);
     history.push(`/decks/${response.id}`);
   }
 
-const handleChange = (event) => {
+  const handleChange = (event) => {
     setNewDeck({ ...newDeck, [event.target.name]: event.target.value });
-};
+  };
 
-return (
+  return (
     <div>
       <nav>
         <ol>
-
           <li>
             <Link to="/">Home</Link>
           </li>
 
-          <li> 
-            Create Deck
-          </li>
-
+          <li>Create Deck</li>
         </ol>
       </nav>
-      
+
       <h2>Create Deck</h2>
 
       <form onSubmit={handleSubmit}>
@@ -63,20 +59,13 @@ return (
             value={newDeck.description}
             style={{ width: "100%" }}
           />
-
         </div>
 
-        <Link to="/">
-          Cancel
-        </Link>
-        
-        <button
-          type="submit"
-          onClick={handleSubmit}
-        >
+        <Link to="/">Cancel</Link>
+
+        <button type="submit" onClick={handleSubmit}>
           Submit
         </button>
-
       </form>
     </div>
   );

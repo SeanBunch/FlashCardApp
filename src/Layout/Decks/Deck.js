@@ -41,15 +41,11 @@ function Deck() {
       <div className="col-9 mx-auto">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb">
-
             <li className="breadcrumb-item">
               <Link to={"/"}>Home</Link>
             </li>
 
-            <li className="breadcrumb-item">
-              {name}
-            </li>
-
+            <li className="breadcrumb-item">{name}</li>
           </ol>
         </nav>
 
@@ -70,11 +66,19 @@ function Deck() {
                 Study
               </Link>
 
-              <Link className="btn btn-primary ml-3" to={`/decks/${id}/cards/new`}>
+              <Link
+                className="btn btn-primary ml-3"
+                to={`/decks/${id}/cards/new`}
+              >
                 Add Cards
               </Link>
 
-              <button className="btn btn-danger ml-auto" onClick={deleteHandler} name="delete" value={id}>
+              <button
+                className="btn btn-danger ml-auto"
+                onClick={deleteHandler}
+                name="delete"
+                value={id}
+              >
                 Delete
               </button>
             </div>
@@ -89,13 +93,15 @@ function Deck() {
           <div className="card" key={id}>
             <div className="card-body">
               <p>{card.front}</p>
-             
 
               <p>{card.back}</p>
             </div>
 
             <div className="d-flex justify-content-end p-4">
-              <Link className="btn btn-secondary mr-3" to={`${url}/cards/${card.id}/edit`}>
+              <Link
+                className="btn btn-secondary mr-3"
+                to={`${url}/cards/${card.id}/edit`}
+              >
                 Edit
               </Link>
 

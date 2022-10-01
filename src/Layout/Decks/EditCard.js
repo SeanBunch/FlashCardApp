@@ -13,13 +13,13 @@ function EditCard() {
     setCard({ ...card, front: target.value });
   };
   const backHandler = ({ target }) => {
-    setCard({...card, back: target.value});
+    setCard({ ...card, back: target.value });
   };
 
   const submitHandler = async (event) => {
     await updateCard(card);
-    console.log("submitted")
-  }
+    console.log("submitted");
+  };
 
   useEffect(() => {
     async function getDeck() {
