@@ -5,7 +5,6 @@ import { createDeck } from "../../utils/api/index";
 function CreateDeck() {
   const history = useHistory();
   const [newDeck, setNewDeck] = useState({ name: "", description: "" });
-  // console.log(history)
 
   async function handleSubmit(event) {
     event.preventDefault();
