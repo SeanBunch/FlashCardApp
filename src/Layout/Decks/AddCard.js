@@ -5,7 +5,6 @@ import { Link, useParams } from "react-router-dom";
 import { createCard, readDeck } from "../../utils/api";
 
 function AddCard() {
-  //  useState to hold form input values
   const [newCard, setNewCard] = useState({ front: "", back: "" });
   const [deck, setDeck] = useState([]);
   const { deckId } = useParams();
@@ -18,32 +17,20 @@ function AddCard() {
     setNewCard({ ...newCard, back: target.value });
   };
 
-  // POST request to the api passing in the useState that holds the input values
-  // POST request maybe in the submittHandler
-
-  // submit handler
   const saveHandler = async (event) => {
-    // event.preventDefault();
     await createCard(deckId, newCard);
     setNewCard({ front: "", back: "", cardId: "" });
   };
 
-  // useEffect(() =>{
-  //   async function getDeck() {
-  //     const response = await readDeck(deckId)
-  //     setDeck(response);
-  //   }
-  //   getDeck();
-  // }, [deckId])
-  // console.log("line 38 deck:",deck)
-
-  // done button If the user clicks Done, the user is taken to the Deck screen
+  useEffect(() => {
+    async function getDeck() {
+      const response = await readDeck(deckId);
+      setDeck(response);
+    }
+    getDeck();
+  }, [deckId]);
 
   return (
-    // nav bar
-
-    // render a form with <textarea> tag
-
     <div>
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
@@ -52,7 +39,7 @@ function AddCard() {
           </li>
 
           <li className="breadcrumb-item">
-            <Link to="/">Deck Name</Link>
+            <Link to="/">{deck.name}</Link>
           </li>
 
           <li className="breadcrumb-item active" aria-current="page">
@@ -61,7 +48,7 @@ function AddCard() {
         </ol>
       </nav>
 
-      <h3>Deck name goes here dynamicaly: Add Card</h3>
+      <h3>{deck.name}: Add Card</h3>
 
       <form>
         <div>

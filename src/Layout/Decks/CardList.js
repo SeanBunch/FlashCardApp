@@ -1,14 +1,13 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
 
 function CardList({ deck }) {
   const [front, setFront] = useState(true);
   const [index, setIndex] = useState(0);
-  const { id, name, description, cards } = deck;
+  const { cards } = deck;
   const { deckId } = useParams();
   const history = useHistory();
 
-  // need change handler for flip button
   const flipHandler = () => {
     if (!front) {
       setFront(true);
@@ -17,26 +16,27 @@ function CardList({ deck }) {
     }
   };
 
-  // need change handler for next button
   const nextHandler = () => {
     if (index === cards.length - 1) {
-        window.confirm("Restart cards? Click 'Cancel' to return to the home page.") ? setIndex(0) : history.push("/");
-
-
+      window.confirm(
+        "Restart cards? Click 'Cancel' to return to the home page."
+      )
+        ? setIndex(0)
+        : history.push("/");
     } else {
-        setIndex((index) => index + 1);
-        setFront(true);
+      setIndex((index) => index + 1);
+      setFront(true);
     }
   };
-
-  // need an if statment check for array length and then return if length 3 or more and return for less than 3
 
   if (cards.length > 2) {
     return (
       <div>
         <div className="card">
           <div className="card-body">
-            <h3 className="card-title">Card {index + 1} of {cards.length}</h3>
+            <h3 className="card-title">
+              Card {index + 1} of {cards.length}
+            </h3>
             <p className="card-text">
               {front ? cards[index].front : cards[index].back}
             </p>
@@ -53,13 +53,14 @@ function CardList({ deck }) {
       </div>
     );
   } else {
-    return(
-        <div>
+    return (
+      <div>
         <div className="card">
           <div className="card-body">
             <h3 className="card-title">Not enough cards.</h3>
             <p className="card-text">
-              You need at least 3 cards to study. There are {cards.length} in this deck.
+              You need at least 3 cards to study. There are {cards.length} in
+              this deck.
             </p>
             <Link to={`/decks/${deckId}/cards/new`} className="btn btn-primary">
               + Add Cards
@@ -67,9 +68,8 @@ function CardList({ deck }) {
           </div>
         </div>
       </div>
-    )
+    );
   }
-
 }
 
 export default CardList;

@@ -16,8 +16,8 @@
       "id": 3
     },
     {
-      "name": "7",
-      "description": "7",
+      "name": "new 7 ",
+      "description": "new 7",
       "id": 4
     }
   ],
@@ -71,14 +71,14 @@
       "id": 8
     },
     {
-      "front": "6",
-      "back": "6",
+      "front": "new 6",
+      "back": "new 7",
       "deckId": 4,
       "id": 9
     },
     {
-      "front": "5",
-      "back": "5",
+      "front": "new 5 ",
+      "back": "new 5",
       "deckId": 4,
       "id": 10
     },

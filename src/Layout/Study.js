@@ -27,7 +27,7 @@ function Study() {
           </li>
 
           <li className="breadcrumb-item">
-            <Link to={`/decks/${deckId}`}>Deck Name</Link>
+            <Link to={`/decks/${deckId}`}>{deck.name}</Link>
           </li>
 
           <li className="breadcrumb-item active" aria-current="page">
@@ -36,9 +36,7 @@ function Study() {
         </ol>
       </nav>
 
-      <div>
-        <h1>Study: {deck.name}</h1>
-      </div>
+        <h1>{deck.name}: Study</h1>
       
       <CardList deck={deck}/>
       
