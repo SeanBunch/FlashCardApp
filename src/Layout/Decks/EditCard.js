@@ -72,9 +72,8 @@ function EditCard() {
             card={card}
             frontHandler={frontHandler}
             backHandler={backHandler}
-            submitHandler={submitHandler}
           />
-          
+
           <Link to={`/decks/${deckId}`} className="btn btn-secondary mr-3">
             Cancel
           </Link>

@@ -1,6 +1,6 @@
 import React from "react";
 
-function Form({frontHandler, backHandler, submitHandler, card={}}) {
+function Form({frontHandler, backHandler, card={}}) {
 
 function front() {
     return card.front ? card.front : "";

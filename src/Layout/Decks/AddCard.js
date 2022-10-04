@@ -55,7 +55,6 @@ function AddCard() {
         card={card}
         frontHandler={frontHandler}
         backHandler={backHandler}
-        submitHandler={submitHandler}
       />
       <Link className="btn btn-secondary mr-3" to={`/decks/${deckId}`}>
         Done
