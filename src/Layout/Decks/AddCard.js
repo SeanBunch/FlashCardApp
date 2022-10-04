@@ -3,23 +3,24 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { createCard, readDeck } from "../../utils/api";
+import Form from "./Form";
 
 function AddCard() {
-  const [newCard, setNewCard] = useState({ front: "", back: "" });
+  const [card, setCard] = useState({ front: "", back: "", deckId: "", id: "" });
   const [deck, setDeck] = useState([]);
   const { deckId } = useParams();
-
   const frontHandler = ({ target }) => {
-    setNewCard({ ...newCard, front: target.value });
+    setCard({ ...card, front: target.value });
   };
 
   const backHandler = ({ target }) => {
-    setNewCard({ ...newCard, back: target.value });
+    setCard({ ...card, back: target.value });
   };
 
-  const saveHandler = async (event) => {
-    await createCard(deckId, newCard);
-    setNewCard({ front: "", back: "", cardId: "" });
+  const submitHandler = async (event) => {
+    await createCard(deckId, card);
+    setCard({ front: "", back: "", cardId: "" });
+    console.log("submited");
   };
 
   useEffect(() => {
@@ -49,43 +50,23 @@ function AddCard() {
       </nav>
 
       <h3>{deck.name}: Add Card</h3>
-
-      <form>
-        <div>
-          <label>Front</label>
-          <textarea
-            id="front"
-            type="textarea"
-            name="front"
-            onChange={frontHandler}
-            placeholder="Front side of card"
-            style={{ width: "100%" }}
-          />
-        </div>
-        <br />
-        <div>
-          <label>Back</label>
-          <textarea
-            id="back"
-            type="textarea"
-            name="back"
-            onChange={backHandler}
-            placeholder="Back side of card"
-            style={{ width: "100%" }}
-          />
-        </div>
-
-        <button
-          className="btn btn-primary mr-3"
-          type="submit"
-          onClick={saveHandler}
-        >
-          Save
-        </button>
-        <Link className="btn btn-secondary" to={`/decks/${deckId}`}>
-          Done
-        </Link>
-      </form>
+      
+      <Form
+        card={card}
+        frontHandler={frontHandler}
+        backHandler={backHandler}
+        submitHandler={submitHandler}
+      />
+      <Link className="btn btn-secondary mr-3" to={`/decks/${deckId}`}>
+        Done
+      </Link>
+      <button
+        className="btn btn-primary "
+        type="submit"
+        onClick={submitHandler}
+      >
+        Save
+      </button>
     </div>
   );
 }

@@ -18,20 +18,22 @@ function CreateDeck() {
 
   return (
     <div>
-      <nav>
-        <ol>
-          <li>
+      <nav aria-label="breadcrumb">
+        <ol className="breadcrumb">
+          <li className="breadcrumb-item">
             <Link to="/">Home</Link>
           </li>
 
-          <li>Create Deck</li>
+          <li className="breadcrumb-item active" aria-current="page">
+            Create Deck
+          </li>
         </ol>
       </nav>
 
       <h2>Create Deck</h2>
 
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="form-group">
           <label>Name:</label> <br />
           <input
             id="name"
@@ -40,12 +42,13 @@ function CreateDeck() {
             onChange={handleChange}
             value={newDeck.name}
             style={{ width: "100%" }}
+            className="form-control"
           />
         </div>
 
         <br />
 
-        <div>
+        <div className="form-group">
           <label>Description:</label>
 
           <br />
@@ -57,12 +60,19 @@ function CreateDeck() {
             onChange={handleChange}
             value={newDeck.description}
             style={{ width: "100%" }}
+            className="form-control"
           />
         </div>
 
-        <Link to="/">Cancel</Link>
+        <Link to="/" className="btn btn-secondary mr-3">
+          Cancel
+        </Link>
 
-        <button type="submit" onClick={handleSubmit}>
+        <button 
+        className="btn btn-primary"
+        type="submit" 
+        onClick={handleSubmit}
+        >
           Submit
         </button>
       </form>
