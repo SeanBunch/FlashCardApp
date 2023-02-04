@@ -1,5 +1,5 @@
 # Flashcard-o-matic
-Front-End Deployment: https://flash-card-app.onrender.com
+Front-End Deployment: coming soon redeploying to Render
 
 No Back-end can only be run locally 
 
