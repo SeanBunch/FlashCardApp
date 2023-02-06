@@ -1,7 +1,4 @@
 # Flashcard-o-matic
-Front-End Deployment: coming soon redeploying to Render
-
-No Back-end can only be run locally 
 
 
 ## Project description:
