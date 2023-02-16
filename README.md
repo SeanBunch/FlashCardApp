@@ -2,7 +2,7 @@
 
 
 ## Project description:
-A local school has decided to put together a flash card application, Flashcard-o-matic, to help their students study online. Teachers will use this application to create decks of flash cards for the subjects that they teach, and students will study the decks.
+A local school has decided to put together a flash card application, Flashcard-o-matic, to help their students study online. Teachers will use this application to create decks of flash cards for the subjects that they teach, and students will be able to study the decks.
 __________________________________________________________________________
 
 Decks
